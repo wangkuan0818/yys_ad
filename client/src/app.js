@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import 'taro-ui/dist/style/index.scss'
+import './app.less'
 import Index from './pages/index'
 
-import './app.less'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -14,7 +14,7 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index.weapp'
+      'pages/index/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -37,7 +37,9 @@ class App extends Component {
 
   componentDidHide () {}
 
-  componentDidCatchError () {}
+  componentCatchError(e) {
+    Taro.logger.error('componentDidCatchError', e)
+  }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
