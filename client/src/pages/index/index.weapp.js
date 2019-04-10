@@ -1,8 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, } from '@tarojs/components'
+import { AtTag } from 'taro-ui'
 import './index.less'
 
-import Login from '../../components/login/index.weapp'
+// import Login from '../../components/login/index.weapp'
 
 export default class Index extends Component {
 
@@ -23,7 +24,11 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <Login />
+        <AtTag>标签</AtTag>
+        <AtTag type='primary' circle>标签</AtTag>
+        <AtTag size='small'>标签</AtTag>
+        {/* 注释云服务 */}
+        {/* <Login /> */}
       </View>
     )
   }
