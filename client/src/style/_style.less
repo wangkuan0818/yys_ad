@@ -1,0 +1,182 @@
+@import './_color.less';
+
+  // 清除浮动
+  .clearfix() {
+    zoom: 1;
+    &:after {
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+  }
+  
+  // flex布局
+  .flex(@direction:row, @justify:flex-start, @align: flex-start) {
+    display: flex;
+    flex-direction: @direction;
+    justify-content: @justify;
+    align-items: @align;
+  }
+  
+  .flex-column(@justify:flex-start, @align: stretch) {
+    display: flex;
+    flex-direction: column;
+    justify-content: @justify;
+    align-items: @align;
+  }
+  
+  .inline-flex-column(@justify:flex-start, @align: stretch) {
+    display: flex;
+    flex-direction: column;
+    justify-content: @justify;
+    align-items: @align;
+  }
+  
+  .flex-row(@justify:flex-start, @align: flex-start) {
+    display: flex;
+    flex-direction: row;
+    justify-content: @justify;
+    align-items: @align;
+  }
+  
+  .inline-flex-row(@justify:flex-start, @align: flex-start) {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: @justify;
+    align-items: @align;
+  }
+  
+  // 文本省略
+  .ellipsis(@w:auto) {
+    width: @w;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+  
+  .ellipsis-line(@line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: @line;
+  }
+  
+  // 文本截断换行
+  .text-wrap() {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  
+  // 一像素边框
+  .hairline(@width: 1px) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    border: @width solid @border-color-split;
+  }
+  
+  .hairlineTop(@width: 1px) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: @width;
+    transform: scaleY(.5);
+    transform-origin: 0 0;
+    background-color: @border-color-split;
+  }
+  
+  .hairlineRight(@width: 1px) {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: @width;
+    transform: scaleX(.5);
+    transform-origin: 0 0;
+    background-color: @border-color-split;
+  }
+  
+  .hairlineBottom(@width: 1px) {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: @width;
+    transform: scaleY(.5);
+    transform-origin: 0 0;
+    background-color: @border-color-split;
+  }
+  
+  .hairlineLeft(@width: 1px) {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: @width;
+    transform: scaleX(.5);
+    transform-origin: 0 0;
+    background-color: @border-color-split;
+  }
+  
+  // 底部fixed
+  .fixed-bottom() {
+    position: fixed;
+    width: 100%;
+    min-height: 120px;
+    padding-left: 20px;
+    padding-right: 20px;
+    bottom: 0;
+    background-color: #fff;
+    border-top: 1px solid @bg-color;
+    .flex-row(flex-start, center);
+    at-button {
+      padding: 0 8px;
+      flex: 1;
+    }
+  }
+  
+  // 布局
+  .pos-left(@left:0) {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: @left;
+  }
+  
+  .pos-right(@right:0) {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: @right;
+  }
+  
+  .after(@display:block) {
+    content: '';
+    display: @display;
+  }
+  
+  // 圆
+  .circle(@size, @color) {
+    width: @size;
+    height: @size;
+    background-color: @color;
+    border-radius: @size/2;
+  }
