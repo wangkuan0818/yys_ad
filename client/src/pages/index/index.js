@@ -21,8 +21,10 @@ export default class Index extends Component {
 
     return (
       <View className='index'>
-        <WSteps stepCurrent={0}></WSteps>
-        <View className='plr-20 select'>
+        <View className='bg-fff pt-20'>
+          <WSteps stepCurrent={0}></WSteps>
+        </View>
+        <View className='p-20 mt-20 select bg-fff'>
           <WSelect></WSelect>
         </View>
 

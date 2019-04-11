@@ -6,4 +6,5 @@ export default {
     ],
     selector: ['sp', 'ssr', 'sr', 'r'],
     selectorChecked: 'sp',
+    tabList : [{ title: 'SP' }, { title: 'SSR' }, { title: 'SR' }, { title: 'R' }]
 }
