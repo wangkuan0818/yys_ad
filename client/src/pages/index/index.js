@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, } from '@tarojs/components'
 import './index.less'
+import CONFIG from '../../util/config'
 
 import WSteps from '../../components/w-steps'
 import WSelect from '../../components/select'
@@ -21,13 +22,12 @@ export default class Index extends Component {
 
     return (
       <View className='index'>
-        <View className='bg-fff pt-20'>
+        <View className='bg-fff ptb-20'>
           <WSteps stepCurrent={0}></WSteps>
         </View>
-        <View className='p-20 mt-20 select bg-fff'>
-          <WSelect></WSelect>
+        <View className='plr-20 pb-20 mt-20 select bg-fff'>
+          <WSelect list={CONFIG.sp}></WSelect>
         </View>
-
         {/* 注释云服务 */}
         {/* <Login /> */}
       </View>

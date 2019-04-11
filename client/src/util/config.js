@@ -6,5 +6,21 @@ export default {
     ],
     selector: ['sp', 'ssr', 'sr', 'r'],
     selectorChecked: 'sp',
-    tabList : [{ title: 'SP' }, { title: 'SSR' }, { title: 'SR' }, { title: 'R' }]
+    tabList : [{ title: 'SP' }, { title: 'SSR' }, { title: 'SR' }, { title: 'R' }],
+    sp: [{
+        title: '稻荷神御馔津',
+        img: null,
+    }, {
+        title: '炼狱茨木童子',
+        img: null,
+    }, {
+        title: '小天狗',
+        img: null,
+    }, {
+        title: 'sp妖刀',
+        img: null,
+    }, {
+        title: 'sp一目连',
+        img: null,
+    }],
 }

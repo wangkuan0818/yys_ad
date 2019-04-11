@@ -225,7 +225,7 @@
 }
 
 .generate-ptb(40);
-.generate-ptb(@n, @i: 5) when (@i <= @n) {
+.generate-ptb(@n, @i: 0) when (@i <= @n) {
   .ptb-@{i} {
     padding-top: (@i+0px);
     padding-bottom: (@i+0px);
