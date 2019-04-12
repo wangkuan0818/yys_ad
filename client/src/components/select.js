@@ -1,26 +1,46 @@
 import Taro, { Component } from "@tarojs/taro"
 import { View } from "@tarojs/components"
 import { PropTypes } from 'prop-types'
-import { AtTabs, AtButton } from 'taro-ui'
+import { AtTabs, AtButton, AtMessage, AtSwitch } from 'taro-ui'
 import _ from 'lodash'
 import CONFIG from '../util/config'
 import './index.less'
 import '../app.less'
 import WItem from './item'
 
+const defaultFunc = () => {}
 class WSelect extends Component {
     constructor () {
         super(...arguments)
         this.state = {
+            shikigamiList: CONFIG.sp,
             current: 0,
             selectedList: [],
+            leaveGuild: false,
         }
     }
-    handleClick (value) {
+    switchTabClick (value) {
+        let shikigamiList = []
+        if(value === 0) {
+            shikigamiList = CONFIG.sp
+        } else if (value === 1) {
+            shikigamiList = CONFIG.ssr
+        } else if (value === 2) {
+            shikigamiList = CONFIG.sr
+        } else if (value === 3) {
+            shikigamiList = CONFIG.gua
+        }
         this.setState({
-          current: value
+          current: value,
+          shikigamiList,
         })
     }
+
+    handleChange = value => {
+        this.setState({
+            leaveGuild: value,
+        })
+      }
 
     onChange = (value) => {
         let {
@@ -41,16 +61,31 @@ class WSelect extends Component {
         const {
             selectedList
         } = this.state
-        console.log(selectedList, '已选')
+        // 屏蔽限制式神数量-2019-04-12
+        // let {selectNumber} = this.props
+        // if(selectedList.length > selectNumber) {
+        //     Taro.atMessage({
+        //         'message': `所选式神数量不能超过${selectNumber}个`,
+        //         'type': 'error',
+        //       })
+        // } else {
+        //     this.props.onSelected(selectedList)
+        // }
+        this.props.onSelected(selectedList)
     }
 
     render() {
-        let {list, buttonText} = this.props
+        const {shikigamiList, leaveGuild} = this.state
+        let {buttonText, showLeaveGuild} = this.props
         return (
             <View className='select'>
-                <AtTabs current={this.state.current} tabList={CONFIG.tabList} onClick={this.handleClick.bind(this)}></AtTabs>
+                {showLeaveGuild && 
+                <View className=''>
+                    <AtSwitch title='是否上门:' checked={leaveGuild} onChange={this.handleChange} />
+                </View>}
+                <AtTabs current={this.state.current} tabList={CONFIG.tabList} onClick={this.switchTabClick.bind(this)}></AtTabs>
                 <View className='flex-middle flex-wrap'>
-                    {list && list.map((elem, index) => {
+                    {shikigamiList && shikigamiList.map((elem, index) => {
                         return (
                             <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
                                 <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
@@ -61,19 +96,24 @@ class WSelect extends Component {
                 <View className='mt-20 botton'>
                     <AtButton onClick={this.onSelected.bind(this)}>{buttonText}</AtButton>
                 </View>
+                <AtMessage />
             </View>
         )
     }
 }
 
 WSelect.propTypes = {
-    list: PropTypes.array,
     buttonText: PropTypes.string,
+    onSelected: PropTypes.func,
+    selectNumber: PropTypes.number,
+    showLeaveGuild: PropTypes.bool
 }
 
 WSelect.defaultProps = {
-    list: [],
-    buttonText: '确认填写完毕进入下一页'
+    buttonText: '确认填写完毕进入下一页', //按钮文案
+    onSelected: defaultFunc, // 选择完事件
+    selectNumber: 1, // 选择式神数量上限
+    showLeaveGuild: false, // 显示是否上门
 }
 
 export default WSelect

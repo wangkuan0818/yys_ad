@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, } from '@tarojs/components'
 import './index.less'
-import CONFIG from '../../util/config'
+import { set as setGlobalData, get as getGlobalData } from '../../util/global_data'
 
 import WSteps from '../../components/w-steps'
 import WSelect from '../../components/select'
@@ -17,6 +17,16 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   }
 
+  componentWillMount() {
+    // setGlobalData('test', 1)
+    // console.log(getGlobalData('test'), 'getGlobalData', Taro)
+  }
+
+  onSelected = (value) => {
+    setGlobalData('shikigamiList_swap', value)
+    console.log(getGlobalData('shikigamiList_swap'), 'value-onSelected')
+  }
+
 
   render () {
 
@@ -26,7 +36,11 @@ export default class Index extends Component {
           <WSteps stepCurrent={0}></WSteps>
         </View>
         <View className='plr-20 pb-20 mt-20 select bg-fff'>
-          <WSelect list={CONFIG.sp}></WSelect>
+          <WSelect 
+            onSelected={this.onSelected.bind(this)}
+            selectNumber={2}
+            showLeaveGuild
+          ></WSelect>
         </View>
         {/* 注释云服务 */}
         {/* <Login /> */}
