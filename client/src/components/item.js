@@ -15,26 +15,35 @@ class WItem extends Component {
 
     // 剩余碎片数量发生改变
     onChange = (e) => {
-      let value = e.detail.value
+      let value = parseInt(e.detail.value)
+      let id = e.target.dataset.id
+      const {title} = this.props
       this.setState({
         value,
       })
-      this.props.onChange(value)
+      this.props.onChange({value, id, title})
+    }
+
+    onConfirm = () => {
+      const {value} = this.state
+      console.log(value, 'value')
     }
 
     render() {
       let {value} = this.state
-      let {title} = this.props
+      let {title, listId} = this.props
         return (
           <View className='wItems'>
               <View className='title'>{title}</View>
               <View className='pt-10'>
                   <Input 
                     className='bor-eee mlr-10 fs-20' 
+                    dataId={listId}
                     type='number' 
                     maxLength={4} 
                     placeholder='已有碎片数量' 
                     onInput={this.onChange} 
+                    onConfirm={this.onConfirm}
                     value={value} 
                     confirmType='确定'
                   />
@@ -50,11 +59,13 @@ class WItem extends Component {
 
 WItem.propTypes = {
   title: PropTypes.string,
+  listId: PropTypes.number,
   onChange: PropTypes.func
 }
 
 WItem.defaultProps = {
   title: '',
+  listId: 0,
   onChange: defaultFunc,
 }
 
