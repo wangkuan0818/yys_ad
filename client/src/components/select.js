@@ -59,7 +59,8 @@ class WSelect extends Component {
 
     onSelected = () => {
         const {
-            selectedList
+            selectedList,
+            leaveGuild
         } = this.state
         // 屏蔽限制式神数量-2019-04-12
         // let {selectNumber} = this.props
@@ -71,7 +72,7 @@ class WSelect extends Component {
         // } else {
         //     this.props.onSelected(selectedList)
         // }
-        this.props.onSelected(selectedList)
+        this.props.onSelected({selectedList, leaveGuild})
     }
 
     render() {
