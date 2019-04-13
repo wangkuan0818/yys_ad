@@ -55,14 +55,14 @@ export default class Build extends Component {
                   </View>
                 )
               })}
-              <View className='flex-1 items tac'>
+              {/* <View className='flex-1 items tac'>
                 <View>茨木童子</View>
                 <View>123</View>
               </View>
               <View className='flex-1 items tac'>
                 <View>123123</View>
                 <View>123</View>
-              </View>
+              </View> */}
             </View>
             <View className='tac fx-30'>
               <View className='fs-26'>需要换的式神</View>
@@ -78,10 +78,10 @@ export default class Build extends Component {
                   </View>
                 )
               })}
-              <View className='flex-1 items tac'>
+              {/* <View className='flex-1 items tac'>
                 <View>茨木童子</View>
                 <View>123</View>
-              </View>
+              </View> */}
             </View>
           </View>
         </View>
