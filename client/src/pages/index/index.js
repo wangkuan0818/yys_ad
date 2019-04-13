@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, } from '@tarojs/components'
 import './index.less'
 import { set as setGlobalData } from '../../util/global_data'
+import CONFIG from '../../util/config'
 
 import WSteps from '../../components/w-steps'
 import WSelect from '../../components/select'
@@ -15,11 +16,6 @@ export default class Index extends Component {
 
   config = {
     navigationBarTitleText: '首页'
-  }
-
-  componentWillMount() {
-    // setGlobalData('test', 1)
-    // console.log(getGlobalData('test'), 'getGlobalData', Taro)
   }
 
   onSelected = (value) => {
@@ -40,10 +36,10 @@ export default class Index extends Component {
         <View className='bg-fff ptb-20'>
           <WSteps stepCurrent={0}></WSteps>
         </View>
-        <View className='plr-20 pb-20 mt-20 select bg-fff'>
+        <View className='pb-20 mt-20 select bg-fff'>
           <WSelect 
             onSelected={this.onSelected.bind(this)}
-            selectNumber={6}
+            selectNumber={CONFIG.selectNumber}
             showLeaveGuild
           ></WSelect>
         </View>

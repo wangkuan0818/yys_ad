@@ -1,7 +1,7 @@
 import Taro, { Component } from "@tarojs/taro"
 import { View } from "@tarojs/components"
 import { PropTypes } from 'prop-types'
-import { AtTabs, AtButton, AtMessage, AtSwitch, AtTabsPane } from 'taro-ui'
+import { AtTabs, AtButton, AtMessage, AtSwitch, AtTabsPane, AtNoticebar } from 'taro-ui'
 import _ from 'lodash'
 import CONFIG from '../util/config'
 import './index.less'
@@ -54,97 +54,86 @@ class WSelect extends Component {
             selectedList,
             leaveGuild
         } = this.state
-        // 屏蔽限制式神数量-2019-04-12
-        // let {selectNumber} = this.props
-        // if(selectedList.length > selectNumber) {
-        //     Taro.atMessage({
-        //         'message': `所选式神数量不能超过${selectNumber}个`,
-        //         'type': 'error',
-        //       })
-        // } else {
-        //     this.props.onSelected(selectedList)
-        // }
-        this.props.onSelected({selectedList, leaveGuild})
+        let {selectNumber} = this.props
+        if(selectedList.length > selectNumber) {
+            Taro.atMessage({
+                'message': `所选式神数量不能超过${selectNumber}个`,
+                'type': 'error',
+              })
+        } else if (selectedList.length < 1) {
+            Taro.atMessage({
+                'message': `所选式神数量需要大于1个`,
+                'type': 'error',
+              })
+        } else {
+            this.props.onSelected({selectedList, leaveGuild})
+        }
     }
 
     render() {
-        const {leaveGuild, current} = this.state
-        let {buttonText, showLeaveGuild} = this.props
+        const {leaveGuild, current, selectedList} = this.state
+        const {buttonText, showLeaveGuild, selectNumber} = this.props
         return (
-            <View className='select'>
-                {showLeaveGuild && 
-                <View className=''>
-                    <AtSwitch title='是否上门:' checked={leaveGuild} onChange={this.handleChange} />
-                </View>}
-                <AtTabs current={current} tabList={CONFIG.tabList} onClick={this.switchTabClick.bind(this)}>
-                    <AtTabsPane current={current} index={0} >
-                        <View className='flex-middle flex-wrap'>
-                            {CONFIG.sp && CONFIG.sp.map((elem, index) => {
-                                return (
-                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
-                                    </View>
-                                )
-                            })}
-                        </View>
-                    </AtTabsPane>
-                    <AtTabsPane current={current} index={1} >
-                        <View className='flex-middle flex-wrap'>
-                            {CONFIG.ssr && CONFIG.ssr.map((elem, index) => {
-                                return (
-                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
-                                    </View>
-                                )
-                            })}
-                        </View>
-                    </AtTabsPane>
-                    <AtTabsPane current={current} index={2} >
-                        <View className='flex-middle flex-wrap'>
-                            {CONFIG.sr && CONFIG.sr.map((elem, index) => {
-                                return (
-                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
-                                    </View>
-                                )
-                            })}
-                        </View>
-                    </AtTabsPane>
-                    <AtTabsPane current={current} index={3} >
-                        <View className='flex-middle flex-wrap'>
-                            {CONFIG.gua && CONFIG.gua.map((elem, index) => {
-                                return (
-                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
-                                    </View>
-                                )
-                            })}
-                        </View>
-                    </AtTabsPane>
-                </AtTabs>
-                
-                <View className='mt-20 botton'>
-                    <AtButton onClick={this.onSelected.bind(this)}>{buttonText}</AtButton>
-                </View>
-                {/* {loaded ? (
-                    <View style={{padding: '100px 0'}}><AtLoadMore status='loading' /></View>
-                ):(
-                    <View>
-                        <View className='flex-middle flex-wrap'>
-                            {shikigamiList && shikigamiList.map((elem, index) => {
-                                return (
-                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
-                                    </View>
-                                )
-                            })}
-                        </View>
-                        <View className='mt-20 botton'>
-                            <AtButton onClick={this.onSelected.bind(this)}>{buttonText}</AtButton>
-                        </View>
+            <View>
+                <AtNoticebar icon='volume-plus'>
+                    式神选择不得超过{selectNumber}个，当前已选择{selectedList.length}个式神
+                </AtNoticebar>
+                <View className='plr-20 select'>
+                    {showLeaveGuild && 
+                    <View className=''>
+                        <AtSwitch title='是否上门:' checked={leaveGuild} onChange={this.handleChange} />
+                    </View>}
+                    <AtTabs current={current} tabList={CONFIG.tabList} onClick={this.switchTabClick.bind(this)}>
+                        <AtTabsPane current={current} index={0} >
+                            <View className='flex-middle flex-wrap flex-align-content peopleItems'>
+                                {CONFIG.sp && CONFIG.sp.map((elem, index) => {
+                                    return (
+                                        <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                            <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
+                                        </View>
+                                    )
+                                })}
+                            </View>
+                        </AtTabsPane>
+                        <AtTabsPane current={current} index={1} >
+                            <View className='flex-middle flex-wrap flex-align-content peopleItems'>
+                                {CONFIG.ssr && CONFIG.ssr.map((elem, index) => {
+                                    return (
+                                        <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                            <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
+                                        </View>
+                                    )
+                                })}
+                            </View>
+                        </AtTabsPane>
+                        <AtTabsPane current={current} index={2} >
+                            <View className='flex-middle flex-wrap flex-align-content peopleItems'>
+                                {CONFIG.sr && CONFIG.sr.map((elem, index) => {
+                                    return (
+                                        <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                            <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
+                                        </View>
+                                    )
+                                })}
+                            </View>
+                        </AtTabsPane>
+                        <AtTabsPane current={current} index={3} >
+                            <View className='flex-middle flex-wrap flex-align-content peopleItems'>
+                                {CONFIG.gua && CONFIG.gua.map((elem, index) => {
+                                    return (
+                                        <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                            <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
+                                        </View>
+                                    )
+                                })}
+                            </View>
+                        </AtTabsPane>
+                    </AtTabs>
+                    <View className='mt-20 botton'>
+                        <AtButton onClick={this.onSelected.bind(this)}>{buttonText}</AtButton>
                     </View>
-                )} */}
-                <AtMessage />
+                    <AtMessage />
+                </View>
             </View>
         )
     }

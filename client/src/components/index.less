@@ -1,16 +1,22 @@
 .bor-eee {
-  border:1px solid #eee;
+  border:2px solid #eee;
+}
+
+.peopleItems{
+  height:550px;
+  overflow-y:auto;
 }
 .select{
   .peopleList{
-    width: 33%;
-    min-width: 32.5%;
-    max-width: 32.4%;
-    border: 1px dashed #eee;
+    width: 33.3%;
+    min-width: 33.3%;
+    max-width: 33.3%;
+    border: 2px dashed #eee;
     border-right: none;
+    box-sizing: border-box;
   }
-  .peopleList:nth-child(3),.peopleList:last-child{
-    border-right: 1px dashed #eee;
+  .peopleList:nth-child(3n+3),.peopleList:last-child{
+    border-right: 2px dashed #eee;
   }
 }
 

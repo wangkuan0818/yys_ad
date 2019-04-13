@@ -6,6 +6,8 @@ export default {
     ],
     selector: ['sp', 'ssr', 'sr', 'r'],
     selectorChecked: 'sp',
+    selectNumber: 6, // 选择式神数量最大数值
+    selectNumber_exchange: 2, // 选择交还式神数量最大数值
     tabList : [{ title: 'SP' }, { title: 'SSR' }, { title: 'SR' }, { title: '呱' }],
     sp: [{
         id: 10001,
