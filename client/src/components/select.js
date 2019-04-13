@@ -1,7 +1,7 @@
 import Taro, { Component } from "@tarojs/taro"
 import { View } from "@tarojs/components"
 import { PropTypes } from 'prop-types'
-import { AtTabs, AtButton, AtMessage, AtSwitch } from 'taro-ui'
+import { AtTabs, AtButton, AtMessage, AtSwitch, AtTabsPane } from 'taro-ui'
 import _ from 'lodash'
 import CONFIG from '../util/config'
 import './index.less'
@@ -13,26 +13,14 @@ class WSelect extends Component {
     constructor () {
         super(...arguments)
         this.state = {
-            shikigamiList: CONFIG.sp,
             current: 0,
             selectedList: [],
             leaveGuild: false,
         }
     }
     switchTabClick (value) {
-        let shikigamiList = []
-        if(value === 0) {
-            shikigamiList = CONFIG.sp
-        } else if (value === 1) {
-            shikigamiList = CONFIG.ssr
-        } else if (value === 2) {
-            shikigamiList = CONFIG.sr
-        } else if (value === 3) {
-            shikigamiList = CONFIG.gua
-        }
         this.setState({
-          current: value,
-          shikigamiList,
+            current: value,
         })
     }
 
@@ -47,14 +35,18 @@ class WSelect extends Component {
             selectedList
         } = this.state
         let list = _.clone(selectedList)
+        // 是否包含该对象，包含则删除
         let findeq = _.find(list, {'id': value.id})
         if (findeq) {
             _.remove(list,list[_.findIndex(list, findeq)])
         }
-        list.push(value)
+        if(value.value > 0) {
+            list.push(value)
+        }
         this.setState({
             selectedList: list,
         })
+        console.log(list)
     }
 
     onSelected = () => {
@@ -76,7 +68,7 @@ class WSelect extends Component {
     }
 
     render() {
-        const {shikigamiList, leaveGuild} = this.state
+        const {leaveGuild, current} = this.state
         let {buttonText, showLeaveGuild} = this.props
         return (
             <View className='select'>
@@ -84,19 +76,74 @@ class WSelect extends Component {
                 <View className=''>
                     <AtSwitch title='是否上门:' checked={leaveGuild} onChange={this.handleChange} />
                 </View>}
-                <AtTabs current={this.state.current} tabList={CONFIG.tabList} onClick={this.switchTabClick.bind(this)}></AtTabs>
-                <View className='flex-middle flex-wrap'>
-                    {shikigamiList && shikigamiList.map((elem, index) => {
-                        return (
-                            <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
-                            </View>
-                        )
-                    })}
-                </View>
+                <AtTabs current={current} tabList={CONFIG.tabList} onClick={this.switchTabClick.bind(this)}>
+                    <AtTabsPane current={current} index={0} >
+                        <View className='flex-middle flex-wrap'>
+                            {CONFIG.sp && CONFIG.sp.map((elem, index) => {
+                                return (
+                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    </AtTabsPane>
+                    <AtTabsPane current={current} index={1} >
+                        <View className='flex-middle flex-wrap'>
+                            {CONFIG.ssr && CONFIG.ssr.map((elem, index) => {
+                                return (
+                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    </AtTabsPane>
+                    <AtTabsPane current={current} index={2} >
+                        <View className='flex-middle flex-wrap'>
+                            {CONFIG.sr && CONFIG.sr.map((elem, index) => {
+                                return (
+                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    </AtTabsPane>
+                    <AtTabsPane current={current} index={3} >
+                        <View className='flex-middle flex-wrap'>
+                            {CONFIG.gua && CONFIG.gua.map((elem, index) => {
+                                return (
+                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    </AtTabsPane>
+                </AtTabs>
+                
                 <View className='mt-20 botton'>
                     <AtButton onClick={this.onSelected.bind(this)}>{buttonText}</AtButton>
                 </View>
+                {/* {loaded ? (
+                    <View style={{padding: '100px 0'}}><AtLoadMore status='loading' /></View>
+                ):(
+                    <View>
+                        <View className='flex-middle flex-wrap'>
+                            {shikigamiList && shikigamiList.map((elem, index) => {
+                                return (
+                                    <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                        <View className='mt-20 botton'>
+                            <AtButton onClick={this.onSelected.bind(this)}>{buttonText}</AtButton>
+                        </View>
+                    </View>
+                )} */}
                 <AtMessage />
             </View>
         )
