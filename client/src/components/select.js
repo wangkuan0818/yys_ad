@@ -82,7 +82,7 @@ class WSelect extends Component {
                             {CONFIG.sp && CONFIG.sp.map((elem, index) => {
                                 return (
                                     <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
                                     </View>
                                 )
                             })}
@@ -93,7 +93,7 @@ class WSelect extends Component {
                             {CONFIG.ssr && CONFIG.ssr.map((elem, index) => {
                                 return (
                                     <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
                                     </View>
                                 )
                             })}
@@ -104,7 +104,7 @@ class WSelect extends Component {
                             {CONFIG.sr && CONFIG.sr.map((elem, index) => {
                                 return (
                                     <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
                                     </View>
                                 )
                             })}
@@ -115,7 +115,7 @@ class WSelect extends Component {
                             {CONFIG.gua && CONFIG.gua.map((elem, index) => {
                                 return (
                                     <View className='flex-1 tac peopleList fs-24 ptb-20 mt-10' key={index}>
-                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)} value1={null}></WItem>
+                                        <WItem title={elem.title} listId={elem.id} onChange={this.onChange.bind(this)}></WItem>
                                     </View>
                                 )
                             })}

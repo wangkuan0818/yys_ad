@@ -13,12 +13,6 @@ class WItem extends Component {
         }
     }
 
-    componentWillMount () {
-      this.setState({
-        value: this.props.value1
-      })
-    }
-
     // 剩余碎片数量发生改变
     onChange = (e) => {
       let value = parseInt(e.detail.value)
@@ -67,14 +61,12 @@ WItem.propTypes = {
   title: PropTypes.string,
   listId: PropTypes.number,
   onChange: PropTypes.func,
-  value1: PropTypes.number,
 }
 
 WItem.defaultProps = {
   title: '',
   listId: 0,
   onChange: defaultFunc,
-  value1: null,
 }
 
 export default WItem
