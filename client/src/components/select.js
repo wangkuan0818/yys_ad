@@ -83,7 +83,7 @@ class WSelect extends Component {
                     <View className=''>
                         <AtSwitch title='是否上门:' checked={leaveGuild} onChange={this.handleChange} />
                     </View>}
-                    <AtTabs current={current} tabList={CONFIG.tabList} onClick={this.switchTabClick.bind(this)}>
+                    <AtTabs current={current} tabList={CONFIG.tabList} onClick={this.switchTabClick.bind(this)} swipeable={false}>
                         <AtTabsPane current={current} index={0} >
                             <View className='flex-middle flex-wrap flex-align-content peopleItems'>
                                 {CONFIG.sp && CONFIG.sp.map((elem, index) => {

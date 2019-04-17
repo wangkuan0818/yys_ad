@@ -11,52 +11,136 @@ export default {
     tabList : [{ title: 'SP' }, { title: 'SSR' }, { title: 'SR' }, { title: '呱' }],
     sp: [{
         id: 10001,
-        title: '稻荷神御馔津',
+        title: '赤影妖刀姬',
         img: null,
     }, {
         id: 10002,
-        title: '炼狱茨木童子',
+        title: '苍风一目连',
         img: null,
     }, {
         id: 10003,
-        title: '小天狗',
+        title: '稻荷神御馔津',
         img: null,
     }, {
         id: 10004,
-        title: 'sp妖刀',
+        title: '炼狱茨木童子',
         img: null,
     }, {
         id: 10005,
-        title: 'sp一目连',
+        title: '少羽大天狗',
         img: null,
     },],
     ssr: [{
         id: 20001,
-        title: '玉藻前',
-        img: null,
-    }, {
-        id: 20002,
         title: '八岐大蛇',
         img: null,
     }, {
-        id: 20003,
-        title: '茨木',
+        id: 20002,
+        title: '桔梗',
         img: null,
     }, {
-        id: 20004,
+        id: 20003,
         title: '白藏主',
         img: null,
     }, {
+        id: 20004,
+        title: '鬼切',
+        img: null,
+    }, {
         id: 20005,
-        title: '茨木童子',
+        title: '杀生丸',
         img: null,
     }, {
         id: 20006,
-        title: '酒吞童子',
+        title: '犬夜叉',
         img: null,
     }, {
         id: 20007,
-        title: '辉夜姬童子',
+        title: '面灵气',
+        img: null,
+    }, {
+        id: 20008,
+        title: '鬼灯',
+        img: null,
+    }, {
+        id: 20009,
+        title: '卖药郎',
+        img: null,
+    }, {
+        id: 20010,
+        title: '奴良陆生',
+        img: null,
+    }, {
+        id: 20011,
+        title: '山风',
+        img: null,
+    }, {
+        id: 20012,
+        title: '御馔津',
+        img: null,
+    }, {
+        id: 20013,
+        title: '玉藻前',
+        img: null,
+    }, {
+        id: 20015,
+        title: '雪童子',
+        img: null,
+    }, {
+        id: 20016,
+        title: '彼岸花',
+        img: null,
+    }, {
+        id: 20017,
+        title: '荒',
+        img: null,
+    }, {
+        id: 20018,
+        title: '花鸟卷',
+        img: null,
+    }, {
+        id: 20019,
+        title: '辉夜姬',
+        img: null,
+    }, {
+        id: 20020,
+        title: '大天狗',
+        img: null,
+    }, {
+        id: 20021,
+        title: '酒吞童子',
+        img: null,
+    }, {
+        id: 20022,
+        title: '荒川之主',
+        img: null,
+    }, {
+        id: 20023,
+        title: '阎魔',
+        img: null,
+    }, {
+        id: 20024,
+        title: '两面佛',
+        img: null,
+    }, {
+        id: 20025,
+        title: '小鹿男',
+        img: null,
+    }, {
+        id: 20026,
+        title: '茨木童子',
+        img: null,
+    }, {
+        id: 20027,
+        title: '青行灯',
+        img: null,
+    }, {
+        id: 20028,
+        title: '妖刀姬',
+        img: null,
+    }, {
+        id: 20029,
+        title: '一目连',
         img: null,
     },],
     sr: [{
@@ -95,6 +179,42 @@ export default {
     }, {
         id: 40005,
         title: '两面佛呱',
+        img: null,
+    }, {
+        id: 40006,
+        title: '荒川呱',
+        img: null,
+    }, {
+        id: 40007,
+        title: '荒呱',
+        img: null,
+    }, {
+        id: 40008,
+        title: '花鸟卷呱',
+        img: null,
+    }, {
+        id: 40009,
+        title: '一目连呱',
+        img: null,
+    }, {
+        id: 40010,
+        title: '妖刀姬呱',
+        img: null,
+    }, {
+        id: 40011,
+        title: '青行灯呱',
+        img: null,
+    }, {
+        id: 40012,
+        title: '小鹿男呱',
+        img: null,
+    }, {
+        id: 40013,
+        title: '阎魔呱',
+        img: null,
+    }, {
+        id: 40014,
+        title: '彼岸花呱',
         img: null,
     },],
 }
